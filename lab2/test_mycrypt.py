@@ -63,3 +63,9 @@ def test_timing():
     timing2 = min(timeit.repeat('mycrypt.encode("a"*1000)',
                                 'import mycrypt', repeat=3, number=30))
     assert 0.95 * timing2 < timing1 < 1.05 * timing2
+
+def test_input():
+    '''Test if the input is too long'''
+    with pytest.raises(ValueError):
+        input = "a" * 1001
+        mycrypt.encode(input)
